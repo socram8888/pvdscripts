@@ -5,6 +5,11 @@ VideoNow Python codec
 This is a quick and dirty, awful Python 3 set of scripts that are designed to encode, mux, decode
 and demux videos for Hasbro's VideoNow Color player.
 
+Modules
+-------
+[FFmpeg](https://ffmpeg.org/)
+[pillow](https://python-pillow.org/)
+
 Usage
 -----
 
