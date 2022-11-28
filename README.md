@@ -34,6 +34,9 @@ ffmpeg -i input.mp4 -f u8 -ac 2 -ar 17640 -acodec pcm_u8 input_audio.raw
 
 # Mux the video and audio.
 python mux.py --video input_video.raw --audio input_audio.raw --output input_muxed.wav
+
+# Demux the video and audio.
+python demux.py input_muxed.wav
 ```
 
 You'd be left with a WAVE audio file, containing the video and audio.
