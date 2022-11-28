@@ -7,8 +7,9 @@ and demux videos for Hasbro's VideoNow Color player.
 
 Modules
 -------
-[FFmpeg](https://ffmpeg.org/)
-[pillow](https://python-pillow.org/)
+- [FFmpeg](https://ffmpeg.org/)
+
+- [pillow](https://python-pillow.org/)
 
 Usage
 -----
