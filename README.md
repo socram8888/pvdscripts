@@ -5,35 +5,35 @@ VideoNow Python codec
 This is a quick and dirty, awful Python 3 set of scripts that are designed to encode, mux, decode
 and demux videos for Hasbro's VideoNow Color player.
 
+Modules
+-------
+- [FFmpeg](https://ffmpeg.org/)
+
+- [pillow](https://python-pillow.org/)
+
 Usage
 -----
 
 ### Encoding
 
 ```
-# Create a virtual environment
-virtualenv -p python3 venv
+# Install the Pillow image library.
+python -m pip install pillow
 
-# Enable the virtual environment
-source venv/bin/activate
+# Create folder to store video frames.
+mkdir frames
 
-# Install the Pillow image library
-python3 install pillow
-
-# Create folder to store video frames
-mkdir -p camel_frames
-
-# Extract frames, cropped to the appropiate resolution and frames per second
-ffmpeg -i camel_original.webm -filter:v scale=w=216:h=160:force_original_aspect_ratio=increase,crop=216:160,fps=18 camel_frames/%05d.bmp
+# Extract frames, cropped to the appropiate resolution and frames per second.
+ffmpeg -i input.mp4 -filter:v scale=w=216:h=160:force_original_aspect_ratio=increase,crop=216:160,fps=18 frames/%05d.bmp
 
 # Convert into the proprietary bitstream. This is painfully slow.
-python encodeframes.py camel_frames camel_video.bin
+python encodeframes.py frames input_video.raw
 
-# Extract audio in the appropiate format
-ffmpeg -i camel_original.webm -f u8 -ac 2 -ar 17640 -acodec pcm_u8 camel_audio.bin
+# Extract audio in the appropiate format.
+ffmpeg -i input.mp4 -f u8 -ac 2 -ar 17640 -acodec pcm_u8 input_audio.raw
 
-# Mux video and audio
-python mux.py --video camel_video.bin --audio camel_audio.bin --output camel_muxed.wav
+# Mux the video and audio.
+python mux.py --video input_video.raw --audio input_audio.raw --output input_muxed.wav
 ```
 
 You'd be left with a WAVE audio file, containing the video and audio.
